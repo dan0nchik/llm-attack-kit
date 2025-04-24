@@ -5,7 +5,6 @@ if [[ "$1" == "--prepare" ]]; then
     cd PAIR-Ollama
     pip install -r requirements.txt
     pip uninstall jailbreakbench -y
-    curl -fsSL https://ollama.com/install.sh | sh
     cd ..
 else
     # Run the main script logic

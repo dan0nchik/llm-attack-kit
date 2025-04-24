@@ -5,7 +5,12 @@ import nanogcg
 import torch
 from nanogcg import GCGConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import argparse
 
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Run GCG with a specified model.")
+parser.add_argument("--model", type=str, required=True, help="Model ID to use")
+args = parser.parse_args()
 
 HF_TOKEN = os.getenv("HF_TOKEN")
 
@@ -27,8 +32,8 @@ df = pd.read_csv("hf://datasets/JailbreakBench/JBB-Behaviors/" + splits["harmful
 answers = []
 prompts = []
 
-
-model_id = "meta-llama/Llama-3.1-8B"
+# Use the model name from the --model argument
+model_id = args.model
 model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float16).to(
     "cuda"
 )
@@ -53,7 +58,6 @@ for goal, target in zip(df["Goal"], df["Target"]):
     generated_tokens_ids = outputs[0]
     answer = tokenizer.decode(generated_tokens_ids, skip_special_tokens=True)
     answers.append(answer)
-
 
 pd.DataFrame.from_dict(
     {"goal": df["Goal"], "prompt": prompts, "answer": answers}
