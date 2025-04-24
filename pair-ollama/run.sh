@@ -2,12 +2,11 @@
 if [[ "$1" == "--prepare" ]]; then
     # Perform preparation steps
     git clone https://github.com/dan0nchik/PAIR-Ollama.git
-    mv colab-requirements.txt PAIR-Ollama/colab-requirements.txt
     cd PAIR-Ollama
-    pip install -r colab-requirements.txt
     pip install -r requirements.txt
     pip uninstall jailbreakbench -y
     curl -fsSL https://ollama.com/install.sh | sh
+    cd ..
 else
     # Run the main script logic
     attack_model="mixtral:8x7b"
@@ -18,5 +17,5 @@ else
     ollama pull "$attack_model"
     ollama pull "$target_model"
 
-    python3 main.py --attack-model "$attack_model" --target-model "$target_model" --goal "$query" --target-str "$target_str" -v
+    python3 PAIR-Ollama/main.py --attack-model "$attack_model" --target-model "$target_model" --goal "$query" --target-str "$target_str" -v
 fi
