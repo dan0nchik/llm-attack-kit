@@ -1,5 +1,5 @@
 # llm-attack-kit
-A collection of LLM attacks.
+A collection of LLM attacks, evaluated on the [JailbreakBench](https://jailbreakbench.github.io) benchmark.
 
 ## Before you start
 
