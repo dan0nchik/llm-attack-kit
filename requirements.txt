@@ -607,3 +607,4 @@ zstandard==0.23.0
 textgrad==0.1.8
 nanogcg==0.3.0
 python-dotenv
+ollama
