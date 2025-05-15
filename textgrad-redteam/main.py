@@ -7,21 +7,29 @@ from textgrad.autograd.string_based_ops import StringBasedFunction
 from textgrad.engine_experimental.litellm import LiteLLMEngine
 import wandb
 from helper_functions import *
-import ollama
+from ollama import Client
+
 
 wandb.login()
 set_seed(12)
+ollama_client = Client(host=config.OLLAMA_BASE_URL)
 
-os.environ["OLLAMA_BASE_URL"] = config.OLLAMA_BASE_URL
-ollama_model_name = "-".join(config.BACKWARD_MODEL.split("-")[1:])
+if not "v1" in config.OLLAMA_BASE_URL:
+    os.environ["OLLAMA_BASE_URL"] = config.OLLAMA_BASE_URL + "/v1"
+else:
+    os.environ["OLLAMA_BASE_URL"] = config.OLLAMA_BASE_URL
+ollama_model_name = "-".join(
+    config.BACKWARD_MODEL.split("-")[1:]
+)  # remove ollama- from model name for pulling
+
 print(f"Pulling {ollama_model_name}...")
-ollama.pull(ollama_model_name)
-llm_api_eval = tg.get_engine(ollama_model_name)
+ollama_client.pull(ollama_model_name)
+llm_api_eval = tg.get_engine(config.BACKWARD_MODEL)
 
 if "ollama" in config.BASE_MODEL:
     ollama_model_name = "-".join(config.BASE_MODEL.split("-")[1:])
     print(f"Pulling {ollama_model_name}...")
-    ollama.pull(ollama_model_name)
+    ollama_client.pull(ollama_model_name)
     llm_api_test = tg.get_engine(config.BASE_MODEL)
 else:
     llm_api_test = LiteLLMEngine(config.BASE_MODEL)
