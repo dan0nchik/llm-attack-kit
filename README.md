@@ -3,17 +3,17 @@ A collection of LLM attacks, evaluated on the [JailbreakBench](https://jailbreak
 
 ## Before you start
 
-1. Setup environmental variables:
+1. Create .env file in the root folder with the following variables:
 ```bash
-export HF_TOKEN = "YOUR HF TOKEN"
+HF_TOKEN = "YOUR HF TOKEN"
 
-export WANDB_API_KEY = "YOUR WANDB KEY"
+WANDB_API_KEY = "YOUR WANDB KEY"
 
 # SET ONLY IF YOU NEED CLOUD INFERENCE. BY DEFAULT, OLLAMA INFERENCE IS USED:
 
-export OPENAI_API_KEY = "YOUR OPENAI KEY"
+OPENAI_API_KEY = "YOUR OPENAI KEY"
 
-export TOGETHERAI_API_KEY = "YOUR KEY"
+TOGETHERAI_API_KEY = "YOUR KEY"
 ```
 
 2. Install [Ollama](https://ollama.com) for local model inference
