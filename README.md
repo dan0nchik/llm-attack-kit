@@ -28,16 +28,10 @@ export TOGETHERAI_API_KEY = "YOUR KEY"
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-4. Create .venv
+4. Install dependencies
 
 ```bash
 uv sync
-```
-
-5. Install dependencies
-
-```bash
-uv add -r requirements.txt
 ```
 
 ## Red Teaming TextGrad
