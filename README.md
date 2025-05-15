@@ -22,10 +22,22 @@ export TOGETHERAI_API_KEY = "YOUR KEY"
 !curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-3. Install required modules (tested on Google Colab Linux instance)
+3. Install uv package manager
 
-```python
-pip3 install -r requirements.txt
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+4. Create .venv
+
+```bash
+uv sync
+```
+
+5. Install dependencies
+
+```bash
+uv add -r requirements.txt
 ```
 
 ## Red Teaming TextGrad

@@ -3,8 +3,8 @@ if [[ "$1" == "--prepare" ]]; then
     # Perform preparation steps
     git clone https://github.com/dan0nchik/PAIR-Ollama.git
     cd PAIR-Ollama
-    pip install -r requirements.txt
-    pip uninstall jailbreakbench -y
+    uv add -r requirements.txt
+    uv remove jailbreakbench -y
     cd ..
 else
     # Run the main script logic
