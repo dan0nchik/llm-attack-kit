@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Define the folder containing the CSV files
-folder_path = "artifacts/textgrad"
+folder_path = "artifacts"
 
 # Create a list to collect results
 results = []

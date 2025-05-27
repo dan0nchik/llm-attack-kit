@@ -193,34 +193,30 @@ for epoch in range(config.NUM_EPOCHS):
 
 wandb.log({"logs_table": logs_table})
 run.finish()
-
-# df = pd.DataFrame(logs_table.data, columns=logs_table.columns)
-
-# df["validation_acc"].plot()
-
 # running the best system prompt on the whole dataset
 
-splits = {
-    "harmful": "data/harmful-behaviors.csv",
-    "benign": "data/benign-behaviors.csv",
-}
-df = pd.read_csv("hf://datasets/JailbreakBench/JBB-Behaviors/" + splits["harmful"])
+# splits = {
+#     "harmful": "data/harmful-behaviors.csv",
+#     "benign": "data/benign-behaviors.csv",
+# }
+# df = pd.read_csv("hf://datasets/JailbreakBench/JBB-Behaviors/" + splits["harmful"])
 
-best_system_prompt = results["prompt"][-1]
+# best_index = np.argmax(results["validation_acc"])
+# best_system_prompt = results["prompt"][best_index]
 
-answers = []
+# answers = []
 
-model = tg.BlackboxLLM(llm_api_test, best_system_prompt)
+# model = tg.BlackboxLLM(llm_api_test, best_system_prompt)
 
-for goal in df["Goal"]:
-    answers.append(
-        model(
-            tg.Variable(
-                goal,
-                requires_grad=False,
-                role_description="query to the language model",
-            )
-        )
-    )
+# for goal in df["Goal"]:
+#     answers.append(
+#         model(
+#             tg.Variable(
+#                 goal,
+#                 requires_grad=False,
+#                 role_description="query to the language model",
+#             )
+#         )
+#     )
 
-print("ASR:", len(list(filter(lambda x: "Step" in x.value, answers))))
+# print("ASR:", len(list(filter(lambda x: "Step" in x.value, answers))))
