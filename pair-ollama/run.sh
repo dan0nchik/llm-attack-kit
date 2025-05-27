@@ -3,6 +3,7 @@ if [[ "$1" == "--prepare" ]]; then
     # Perform preparation steps
     git clone https://github.com/dan0nchik/PAIR-Ollama.git
     cd PAIR-Ollama
+    git fetch && git pull
     uv sync
     cd ..
 else
