@@ -3,7 +3,7 @@ import json
 import csv
 
 # Define the folder containing the JSON files
-folder_path = "artifacts/textgrad"
+folder_path = "artifacts"
 
 # Iterate through all .json files in the folder
 for filename in os.listdir(folder_path):
