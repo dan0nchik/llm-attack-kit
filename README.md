@@ -1,6 +1,8 @@
 # llm-attack-kit
 A collection of LLM attacks, evaluated on the [JailbreakBench](https://jailbreakbench.github.io) benchmark.
 
+Results of evalutaion can be found in 'artifacts' folders.
+
 ## Before you start
 
 1. Create .env file in the root folder with the following variables:
